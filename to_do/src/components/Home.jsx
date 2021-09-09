@@ -4,9 +4,10 @@ import Cards from './Cards'
 function Home () {
   const [addTodo, setAddToDo] = useState({})
   const [todos, setTodos] = useState([])
+  const [change, setChange] = useState(false)
 
   useEffect(() => {
-    console.log('baal')
+    console.log('hi',todos)
   }, [todos])
 
   function handleChange (e) {
@@ -16,6 +17,16 @@ function Home () {
   function create (e) {
     e.preventDefault()
     setTodos([...todos, addTodo])
+  }
+
+  function todoDelete(id) {
+    // console.log(id);
+    let newtodos = todos;
+    // console.log(newtodos);
+    newtodos.splice(id,1)
+    // console.log(newtodos);
+    setTodos(newtodos);
+    setChange(!change)
   }
 
   return (
@@ -96,8 +107,11 @@ function Home () {
           className='w-10/12 bg-green-100 shadow-md
             py-5 rounded-lg m-auto flex flex-col lg:flex-row flex-wrap px-10'
         >
-          {todos.map((todo, idx) => (
-            <Cards key={idx} id={idx} name={todo.name} email={todo.email} todo={todo.todo} setTodos={setTodos} todos={todos}/>
+          {todos ? (
+            console.log(todos)
+            ) : (-1)}
+          {todos && todos.map((todo, idx) => (
+            <Cards key={idx} id={idx} name={todo.name} email={todo.email} todo={todo.todo} todoDelete={todoDelete}/>
           ))}
         </div>
       </div>

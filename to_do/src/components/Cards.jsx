@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react'
 
-function Cards ({ id, name, email, todo, setTodos, todos }) {
+function Cards ({ id, name, email, todo, todoDelete }) {
 
-    function handleDelete(id){   
-        console.log(id) 
-        let newtodos = todos;
-        console.log(newtodos)
-
-       setTodos(newtodos)
-    }
+    // function handleDelete(id){   
+    //     console.log(id) 
+    //     let newtodos = todos;
+    //     newtodos.splice(id,1);
+    //     console.log(newtodos)
+    //     setTodos([{'todos':2},])
+    // }
 
   return (
     <div className='bg-white mt-5 shadow-md lg:w-5/12 mx-6 rounded-lg'>
@@ -37,7 +37,7 @@ function Cards ({ id, name, email, todo, setTodos, todos }) {
         </label>
         <div>{todo}</div>
         <div className='pt-5 flex mb-2 mx-5'>
-          <button className='ml-auto' onClick={()=>{handleDelete(id)}}>
+          <button className='ml-auto' onClick={()=>todoDelete(id)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-8 w-8 text-red-500 shadow-xl
