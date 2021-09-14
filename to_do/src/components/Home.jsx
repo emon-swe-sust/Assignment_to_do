@@ -8,7 +8,7 @@ function Home() {
     email:'',
     todo:''
   })
-  const {todos, setTodos} = useContext(TodoContext)
+  const {todos, dispatch} = useContext(TodoContext)
   const [change, setChange] = useState(false)
 
   useEffect(()=>{
@@ -25,20 +25,31 @@ function Home() {
 
   function create(e) {
     e.preventDefault()
-    setTodos([...todos, newTodo])
+    dispatch({
+      type:"CREATE",
+      payload: newTodo
+    })
   }
 
   function todoupdate(id, info) {
     let newTodos = todos;
     newTodos[id] = info;
-    setTodos(newTodos);
+    // setTodos(newTodos);
+    dispatch({
+      type:"UPDATE",
+      payload: newTodos
+    })
     setChange(!change)
   }
 
   function todoDelete(id) {
     let newtodos = todos;
     newtodos.splice(id, 1)
-    setTodos(newtodos);
+    // setTodos(newtodos);
+    dispatch({
+      type:"DELETE",
+      payload: newtodos
+    })
     setChange(!change)
   }
 
