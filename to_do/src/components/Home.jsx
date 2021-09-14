@@ -2,24 +2,32 @@ import React, { useState, useEffect } from 'react'
 import Cards from './Cards'
 
 function Home() {
-  const [addTodo, setAddToDo] = useState({})
+  const [newTodo, setnewTodo] = useState({
+    name:'',
+    email:'',
+    todo:''
+  })
   const [todos, setTodos] = useState([])
   const [change, setChange] = useState(false)
 
-  useEffect(() => {
-  }, [todos])
+  useEffect(()=>{
+    setnewTodo({
+      name:'',
+      email:'',
+      todo:''
+    })
+  },[todos])
 
   function handleChange(e) {
-    setAddToDo({ ...addTodo, [e.target.name]: e.target.value })
+    setnewTodo({ ...newTodo, [e.target.name]: e.target.value })
   }
 
   function create(e) {
     e.preventDefault()
-    setTodos([...todos, addTodo])
+    setTodos([...todos, newTodo])
   }
 
   function todoupdate(id, info) {
-    console.log(info)
     let newTodos = todos;
     newTodos[id] = info;
     setTodos(newTodos);
@@ -36,7 +44,6 @@ function Home() {
   return (
     <div className='bg-blue-100 min-h-screen'>
       <div className='bg-white w-full sm:w-9/12 min-h-screen m-auto shadow-2xl'>
-        {/* create */}
         <br />
         <div
           className='w-10/12 bg-green-100 shadow-2xl
@@ -67,6 +74,7 @@ function Home() {
                   type='text'
                   placeholder='Username'
                   onChange={e => handleChange(e)}
+                  value={newTodo.name}
                   required
                 />
               </div>
@@ -91,6 +99,7 @@ function Home() {
                   type='email'
                   placeholder='xyz@abc.com'
                   onChange={e => handleChange(e)}
+                  value={newTodo.email}
                   required
                 />
               </div>
@@ -114,6 +123,7 @@ function Home() {
                 placeholder='To-Do'
                 name='todo'
                 onChange={e => handleChange(e)}
+                value={newTodo.todo}
                 required
               ></textarea>
             </div>
@@ -131,8 +141,8 @@ function Home() {
           className='w-10/12 bg-green-100 shadow-2xl pb-10
             py-5 rounded-lg m-auto flex flex-col lg:flex-row flex-wrap px-10'
         >
-          {todos && todos.map((todo, idx) => (
-            <Cards key={idx} id={idx} name={todo.name} email={todo.email} todo={todo.todo} todoDelete={todoDelete} todoUpdate={todoupdate} />
+          {todos && todos.map(({name, email, todo}, idx) => (
+            <Cards key={idx} id={idx} name={name} email={email} todo={todo} todoDelete={todoDelete} todoUpdate={todoupdate} />
           ))}
           {todos.length < 1 &&
             <div className='flex m-auto text-xl text-red-500 font-semibold'>
