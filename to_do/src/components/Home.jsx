@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { TodoContext } from '../context/TodoContext'
 import Cards from './Cards'
 
 function Home() {
@@ -7,7 +8,7 @@ function Home() {
     email:'',
     todo:''
   })
-  const [todos, setTodos] = useState([])
+  const {todos, setTodos} = useContext(TodoContext)
   const [change, setChange] = useState(false)
 
   useEffect(()=>{

@@ -1,10 +1,14 @@
+import React,{useState} from "react";
 import Home from "./components/Home";
+import TodoContextProvider from "./context/TodoContext";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <TodoContextProvider>
+      <div className="App">
+        <Home />
+      </div>
+    </TodoContextProvider>
   );
 }
 
