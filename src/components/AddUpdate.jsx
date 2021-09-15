@@ -47,7 +47,9 @@ function AddUpdate ({ submit, handleChange, todoInfo, updateId }) {
               font-semibold hover:bg-green-500 hover:-translate-y-1 transform transition shadow-xl'
         type='submit'
       >
-        Create
+        {
+          updateId !=='0' ? <span>Update</span> : <span>Create</span>
+        }
       </button>
     </React.Fragment>
   )
