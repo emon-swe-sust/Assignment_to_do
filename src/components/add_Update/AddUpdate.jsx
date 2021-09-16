@@ -1,5 +1,5 @@
 import React from 'react'
-import { LabelEmail, LabelTodo, LabelUsername } from './label_icons/Label'
+import { LabelEmail, LabelTodo, LabelUsername } from '../label_icons/Label'
 function AddUpdate ({ submit, handleChange, todoInfo, updateId }) {
 
   const formBox = (

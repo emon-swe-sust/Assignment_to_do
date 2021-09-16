@@ -3,12 +3,11 @@ const reducer = (state, action) => {
     case 'CREATE':
       return state.concat(action.payload)
     case 'DELETE':
-      return state.filter(({ id }) => id !== action.id)
+      return state.filter(({ id }) => id !== action.payload)
     case 'UPDATE':
-        console.log(action.payload)
       return(
         state.map(todo => {
-          if (todo.id === action.id) return action.payload
+          if (todo.id === action.payload.id) return action.payload.state
           else return todo
         })
       )

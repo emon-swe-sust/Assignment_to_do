@@ -1,8 +1,9 @@
 import React from "react";
-import Todo from "./components/Todo";
+import ContextWrapper from './components/ContextWrapper'
+
 function App() {
   return (
-    <Todo />
+    <ContextWrapper />
   );
 }
 

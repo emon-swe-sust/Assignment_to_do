@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { TodoContext } from '../../context/TodoContext'
-import AddUpdate from '../AddUpdate'
+import AddUpdate from '../add_Update/AddUpdate'
 import { IconUpdate, IconDelete } from '../label_icons/Icon'
 import { LabelEmail, LabelTodo, LabelUsername } from '../label_icons/Label'
 
 function Cards ({ id, name, email, todo }) {
   const [updateFlag, setUpdateFlag] = useState(false)
-  const [info, setInfo] = useState({
+  const [state, setState] = useState({
     id,
     name,
     email,
@@ -15,7 +15,7 @@ function Cards ({ id, name, email, todo }) {
   const { dispatch } = useContext(TodoContext)
 
   function handleChange (e) {
-    setInfo({ ...info, [e.target.name]: e.target.value })
+    setState({ ...state, [e.target.name]: e.target.value })
   }
 
   const todoUpdate = (e, id) => {
@@ -23,15 +23,17 @@ function Cards ({ id, name, email, todo }) {
     setUpdateFlag(!updateFlag)
     dispatch({
       type: 'UPDATE',
-      payload: info,
-      id
+      payload: {
+        state,
+        id
+      },
     })
   }
 
   function todoDelete () {
     dispatch({
       type: 'DELETE',
-      id
+      payload: id,
     })
   }
 
@@ -42,7 +44,7 @@ function Cards ({ id, name, email, todo }) {
           <AddUpdate
             submit={todoUpdate}
             handleChange={handleChange}
-            todoInfo={info}
+            todoInfo={state}
             updateId={id}
           />
         ) : (
